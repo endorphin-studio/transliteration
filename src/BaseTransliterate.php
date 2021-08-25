@@ -32,6 +32,9 @@ abstract class BaseTransliterate
         $result = '';
         foreach ($this->getChars($phrase) as $char) {
             $replacement = $this->dictionary[$char] ?? '';
+            if($char === ' ') {
+                $replacement .= ' ';
+            }
             $result .= $replacement;
         }
         return $result;
