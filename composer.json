@@ -1,0 +1,19 @@
+{
+  "name": "endorphin-studio/transliteration",
+  "description": "Library which help transliterate UA and RU names into Transliterate analogue",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Serhii Nekhaienko",
+      "email": "serhii.nekhaienko@gmail.com"
+    }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">= 7.4"
+  },
+  "autoload": {
+    "psr-4": { "EndorphinStudio\\Transliteration\\": "src/" }
+  }
+}
