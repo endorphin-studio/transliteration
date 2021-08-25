@@ -14,13 +14,21 @@ abstract class BaseTransliterate
      * Language code
      * @var string
      */
-    protected string $language = '';
+    protected string $schemaName = '';
 
     /**
      * List of replacements
      * @var string[]
      */
     protected array $dictionary = [];
+
+    /**
+     * @return string
+     */
+    public function getSchemaName(): string
+    {
+        return $this->schemaName;
+    }
 
     /**
      * Transliterate Russian or Ukrainian names into Transliterated form

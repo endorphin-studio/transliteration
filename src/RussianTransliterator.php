@@ -9,7 +9,7 @@ namespace EndorphinStudio\Transliteration;
  */
 class RussianTransliterator extends BaseTransliterate
 {
-    protected string $language = 'RU';
+    protected string $schemaName = 'RU';
 
     /**
      * @var string[]

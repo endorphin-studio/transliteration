@@ -10,7 +10,7 @@ namespace EndorphinStudio\Transliteration;
  */
 class UkrainianTransiterator extends BaseTransliterate
 {
-    protected string $language = 'UA';
+    protected string $schemaName = 'UA';
 
     /**
      * @var string[]
