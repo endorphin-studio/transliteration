@@ -68,4 +68,12 @@ abstract class BaseTransliterate implements TransliterateSchemaInterface
             yield mb_substr($phrase, $i, 1);
         }
     }
+
+    public function __construct()
+    {
+        /**
+         * Call extend function if we want to extend existing dictionary
+         */
+        $this->extend();
+    }
 }
