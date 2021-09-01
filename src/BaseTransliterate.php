@@ -8,8 +8,16 @@ namespace EndorphinStudio\Transliteration;
  * @package EndorphinStudio\Transliteration
  * @author Serhii Nekhaienko <serhii.nekhaienko@gmail.com>
  */
-abstract class BaseTransliterate
+abstract class BaseTransliterate implements TransliterateSchemaInterface
 {
+    /**
+     * This method will be used if you want to extend existing dictionary
+     */
+    public function extend(): void
+    {
+
+    }
+
     /**
      * Language code
      * @var string
