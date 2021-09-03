@@ -3,6 +3,8 @@
 
 namespace EndorphinStudio\Transliteration;
 
+use Iterator;
+
 /**
  * Class BaseTransliterate
  * @package EndorphinStudio\Transliteration
@@ -11,24 +13,31 @@ namespace EndorphinStudio\Transliteration;
 abstract class BaseTransliterate implements TransliterateSchemaInterface
 {
     /**
+     * Language code
+     * @var string
+     */
+    protected string $schemaName = '';
+    /**
+     * List of replacements
+     * @var string[]
+     */
+    protected array $dictionary = [];
+
+    public function __construct()
+    {
+        /**
+         * Call extend function if we want to extend existing dictionary
+         */
+        $this->extend();
+    }
+
+    /**
      * This method will be used if you want to extend existing dictionary
      */
     public function extend(): void
     {
 
     }
-
-    /**
-     * Language code
-     * @var string
-     */
-    protected string $schemaName = '';
-
-    /**
-     * List of replacements
-     * @var string[]
-     */
-    protected array $dictionary = [];
 
     /**
      * @return string
@@ -46,10 +55,11 @@ abstract class BaseTransliterate implements TransliterateSchemaInterface
     public function transliterate(string $phrase): string
     {
         $result = '';
+        $ignore = [' ', '-', ',', '.'];
         foreach ($this->getChars($phrase) as $char) {
             $replacement = $this->dictionary[$char] ?? '';
-            if($char === ' ') {
-                $replacement .= ' ';
+            if (in_array($char, $ignore, true)) {
+                $replacement .= $char;
             }
             $result .= $replacement;
         }
@@ -59,21 +69,13 @@ abstract class BaseTransliterate implements TransliterateSchemaInterface
     /**
      * Iterate over string (name)
      * @param string $phrase
-     * @return \Iterator
+     * @return Iterator
      */
-    private function getChars(string $phrase): \Iterator
+    private function getChars(string $phrase): Iterator
     {
         $length = mb_strlen($phrase);
         for ($i = 0; $i < $length; $i++) {
             yield mb_substr($phrase, $i, 1);
         }
-    }
-
-    public function __construct()
-    {
-        /**
-         * Call extend function if we want to extend existing dictionary
-         */
-        $this->extend();
     }
 }
